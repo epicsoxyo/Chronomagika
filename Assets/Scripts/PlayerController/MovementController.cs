@@ -7,15 +7,25 @@ namespace CM_Player
 {
 
     // controls the player movement. called from the player controller.
+    [RequireComponent(typeof(CharacterController))]
     public class MovementController : MonoBehaviour
     {
 
         private Animator anim;
+        private CharacterController characterController;
 
         [SerializeField] private float movementSpeed = 3.5f;
-        private float movementAngle = Mathf.Tan(Mathf.Deg2Rad * 30f);
-        private float roomSize = 15f;
+        // private float movementAngle = Mathf.Tan(Mathf.Deg2Rad * 30f);
         private bool isDodgeRolling = false;
+
+
+
+        private void Awake()
+        {
+            
+            characterController = GetComponent<CharacterController>();
+
+        }
 
 
 
@@ -35,8 +45,8 @@ namespace CM_Player
             Vector3 destination3D = new Vector3
             (
                 destination.x,
-                destination.y,
-                destination.y / Mathf.Tan(Mathf.Deg2Rad * 30f)
+                0f,
+                destination.y
             );
 
             transform.position = destination3D;
@@ -57,10 +67,10 @@ namespace CM_Player
                 (
                     input.x,
                     input.y,
-                    input.y / movementAngle
+                    0f
                 );
 
-                transform.position += direction * movementSpeed * Time.deltaTime;
+                characterController.Move(direction * movementSpeed * Time.deltaTime);
             }
 
             anim.SetFloat("HorizontalVelocity", input.x);
@@ -80,7 +90,7 @@ namespace CM_Player
                 (
                     input.x,
                     input.y,
-                    input.y / Mathf.Tan(Mathf.Deg2Rad * 30f)
+                    0f
                 );
 
                 StartCoroutine(DoDodgeRoll(direction));
@@ -102,26 +112,9 @@ namespace CM_Player
 
             Vector3 destination = direction * movementSpeed;
 
-            // float xMax = roomSize;
-            // float yMax = (roomSize * Mathf.Sin(Mathf.Deg2Rad * 30f)) / 2;
-            // float zMax = (roomSize * Mathf.Cos(Mathf.Deg2Rad * 30f)) / 2;
-
-            // Debug.Log(destination);
-
-            // destination = new Vector3
-            // (
-            //     Mathf.Clamp(destination.x, -xMax, xMax),
-            //     Mathf.Clamp(destination.y, -yMax, yMax),
-            //     Mathf.Clamp(destination.z, -zMax, zMax)
-            // );
-
-            // destination = transform.InverseTransformPoint(destination);
-
-            // Debug.Log(destination);
-
             while(timeElapsed < dodgeTime)
             {
-                transform.position += destination * (Time.deltaTime/dodgeTime);
+                characterController.Move(destination * (Time.deltaTime / dodgeTime));
 
                 timeElapsed += Time.deltaTime;
 
@@ -131,6 +124,8 @@ namespace CM_Player
             isDodgeRolling = false;
 
         }
+
+
 
     }
 

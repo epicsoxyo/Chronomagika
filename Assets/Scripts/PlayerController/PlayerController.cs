@@ -18,7 +18,6 @@ namespace CM_Player
             get{return canMove;}
             set{canMove = value;}
         }
-        private bool isDodgeRolling = false;
 
 
 
