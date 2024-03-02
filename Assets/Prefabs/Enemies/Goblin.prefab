@@ -12,26 +12,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c7e96488a91aa9b409ac4d3be8370f84, type: 2}
-    - target: {fileID: 7014344591709935557, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014344591709935557, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014344591709935557, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014344591709935557, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014344591709935557, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8229872636819443216, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -40,17 +20,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 8979848617553796756, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9030267431489124711, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9030267431489124711, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9030267431489124711, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9030267431489124711, guid: ed1ec164d287b9b4bb045fbfe026aefa, type: 3}
       propertyPath: m_LocalPosition.z
