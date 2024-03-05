@@ -62,14 +62,13 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Collided with " + other.gameObject.name);
-
-        if(damageLayers.value == 1 << other.gameObject.layer)
+        if((LayerMask.GetMask("InvisibleWall") & (1 << other.gameObject.layer)) == 0)
         {
-            other.GetComponent<Health>().TakeDamage(damage);
-        }
+            if((damageLayers & (1 << other.gameObject.layer)) != 0)
+                other.GetComponent<Health>().TakeDamage(damage);
 
-        StartCoroutine("DestroyBullet");
+            StartCoroutine("DestroyBullet");
+        }
 
     }
 

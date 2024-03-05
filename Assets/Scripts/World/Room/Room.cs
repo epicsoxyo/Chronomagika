@@ -3,22 +3,21 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 
-    public int width;
-    public int height;
+    public float width;
+    public float height;
     public int xPosition;
     public int yPosition;
 
-    [SerializeField] private GameObject[] doors = new GameObject[4]; // up, left, down, right
-    [SerializeField] private GameObject[] walls = new GameObject[4]; // up, left, down, right
+    [SerializeField] protected GameObject[] doors = new GameObject[4]; // up, left, down, right
+    [SerializeField] protected GameObject[] walls = new GameObject[4]; // up, left, down, right
 
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         
         foreach(GameObject door in doors) door.SetActive(false);
         foreach(GameObject wall in walls) wall.SetActive(true);
-
 
     }
 

@@ -4,15 +4,15 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    private Animator anim;
+    protected Animator anim;
 
-    [SerializeField] private float maxHealth = 30f;
+    [SerializeField] protected float maxHealth = 30f;
 
-    private float currentHealth;
+    public float currentHealth;
 
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         
         currentHealth = maxHealth;
@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 
 
 
-    private void Start()
+    protected virtual void Start()
     {
 
         anim = GetComponentInChildren<Animator>();
@@ -30,41 +30,38 @@ public class Health : MonoBehaviour
 
 
 
-    public void TakeDamage(float damageReceived)
+    public virtual void TakeDamage(float damageReceived)
     {
 
         currentHealth -= damageReceived;
 
-        if(currentHealth <= 0) StartCoroutine("Die");
-        else anim.SetTrigger("TakeDamage");
+        anim.SetTrigger("TakeDamage");
+
+        if(currentHealth <= 0) Die();
 
     }
 
 
 
-    public void Heal(float healthReceived)
+    public virtual void Heal(float healthReceived)
     {
 
         currentHealth += healthReceived;
         if(currentHealth > maxHealth) currentHealth = maxHealth;
 
+        anim.SetTrigger("Resurrect");
+        anim.SetTrigger("TakeDamage");
+
     }
 
 
 
-    private IEnumerator Die()
+    protected virtual void Die()
     {
 
         Debug.Log(gameObject.name + " died");
 
         anim.SetTrigger("Die");
-
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach(Collider collider in colliders) Destroy(collider);
-
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length + 3f);
-
-        Destroy(gameObject);
 
     }
 
