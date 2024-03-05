@@ -4,7 +4,7 @@ public class PuzzleManager : MonoBehaviour
 {
 
     public static PuzzleManager instance;
-    private EnemyAIController[] enemies;
+    private Puzzle[] puzzles;
 
     // actions
     private int maximumActions = 100;
@@ -22,20 +22,6 @@ public class PuzzleManager : MonoBehaviour
         set{isUndoing = value && (currentActions > 0);}
     }
 
-    // returns true if all enemies in the room have died
-    public bool AllEnemiesAreDead
-    {
-
-        get
-        {
-            foreach(EnemyAIController enemy in enemies)
-                if(enemy.State != EnemyState.DEAD) return false;
-
-            return true;
-        }
-
-    }
-
     // for updating how many moves are available to undo
     private ManaUI manaUI;
     private TimeTravelOverlay timeTravelOverlay;
@@ -46,7 +32,7 @@ public class PuzzleManager : MonoBehaviour
     private void Start()
     {
 
-        enemies = GetComponentsInChildren<EnemyAIController>(true);
+        puzzles = GetComponentsInChildren<Puzzle>();
 
         manaUI = FindFirstObjectByType<ManaUI>();
 
@@ -56,16 +42,11 @@ public class PuzzleManager : MonoBehaviour
 
 
 
-    // sets the active enemymanager to this + enables all enemies
-    public void BeginWave()
+    // sets the active puzzlemanager to this
+    public void SetActivePuzzleManager()
     {
         
         instance = this;
-
-        for(int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(true);
-        }
 
     }
 
@@ -90,14 +71,14 @@ public class PuzzleManager : MonoBehaviour
 
 
 
-    // triggers all enemy actions + updates the mana UI
+    // triggers all puzzle actions + updates the mana UI
     private void TriggerActions()
     {
 
         timeTravelOverlay.ToggleOverlay(false);
 
-        foreach(EnemyAIController enemy in enemies)
-            enemy.DoAction(maximumActions, sampleTime);
+        foreach(Puzzle puzzle in puzzles)
+            puzzle.DoAction(maximumActions);
 
         if(currentActions < maximumActions) currentActions++;
 
@@ -113,8 +94,8 @@ public class PuzzleManager : MonoBehaviour
 
         timeTravelOverlay.ToggleOverlay(true);
 
-        foreach(EnemyAIController enemy in enemies)
-            enemy.UndoAction();
+        foreach(Puzzle puzzle in puzzles)
+            puzzle.UndoAction();
 
         currentActions--;
 

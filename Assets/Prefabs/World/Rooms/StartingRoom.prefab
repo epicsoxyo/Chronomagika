@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartingRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 8856953989012185704, guid: e67396a1e788f9e42916ff4e6a3764bb, type: 3}
+      propertyPath: m_TagString
+      value: SpecialRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 9146363125574169943, guid: e67396a1e788f9e42916ff4e6a3764bb, type: 3}
       propertyPath: m_RootOrder
       value: 0

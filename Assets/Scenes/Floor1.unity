@@ -1242,8 +1242,9 @@ MonoBehaviour:
   - {fileID: 6317667235525740988, guid: edd4a970fa5afcf42b54c6a77eb835e1, type: 3}
   - {fileID: 1867055672623010185, guid: eb39bc9e946e3a14bbaea98ba3a92dd2, type: 3}
   - {fileID: 8528407595886508727, guid: 67e676cad80d4fe40b34b9f82cfddf49, type: 3}
-  bossRoomPrefab: {fileID: 7868809669401115271, guid: 5f5500ddc31fee34db892fae5db52e0c, type: 3}
   treasureRoomPrefab: {fileID: 562105608377578452, guid: d81c046247307014f8d14ada9861092e, type: 3}
+  puzzleRoomPrefab: {fileID: 6639728289310459741, guid: 51dc6f1e7fa777544a48a22b887f229c, type: 3}
+  bossRoomPrefab: {fileID: 7868809669401115271, guid: 5f5500ddc31fee34db892fae5db52e0c, type: 3}
 --- !u!1 &1441679582
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,6 +52,13 @@ namespace CM_Player
                 if(!EnemyManager.instance.IsUndoing) StartCoroutine("TimeTravelCooldown");
             }
 
+            if(PuzzleManager.instance != null)
+            {
+                PuzzleManager.instance.IsUndoing = (Input.GetAxis("Undo") >= 0.01f && canTimeTravel);
+
+                if(!PuzzleManager.instance.IsUndoing) StartCoroutine("TimeTravelCooldown");
+            }
+
             if(Input.GetButtonDown("Dodge")) DodgeRoll(input);
             if(!isDodgeRolling) Move(input);
 

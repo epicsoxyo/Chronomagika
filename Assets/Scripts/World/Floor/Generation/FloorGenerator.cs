@@ -24,6 +24,7 @@ public class FloorGenerator : MonoBehaviour
     [SerializeField] GameObject startingRoom;
     [SerializeField] List<GameObject> roomPrefabs;
     public GameObject treasureRoomPrefab;
+    public GameObject puzzleRoomPrefab;
     public GameObject bossRoomPrefab;
 
 
@@ -38,6 +39,8 @@ public class FloorGenerator : MonoBehaviour
         GenerateFloorFromMap(map);
 
         StartCoroutine(GenerateTreasureRoom());
+
+        StartCoroutine(GeneratePuzzleRoom());
 
         StartCoroutine(GenerateBossRoom());
 
@@ -137,6 +140,34 @@ public class FloorGenerator : MonoBehaviour
         yield return null;
 
         Floor.instance.AddRoom(treasureRoomPrefab, x, y);
+
+    }
+
+
+
+    private IEnumerator GeneratePuzzleRoom()
+    {
+
+        List<Room> rooms = Floor.instance.GetRooms();
+        bool foundSuitableRoom = false;
+
+        Room randomRoom = rooms[Random.Range(0, rooms.Count)];;
+
+        while(!foundSuitableRoom)
+        {
+            if(!randomRoom.gameObject.CompareTag("SpecialRoom")) foundSuitableRoom = true;
+
+            else randomRoom = rooms[Random.Range(0, rooms.Count)];
+        }
+
+        int x = randomRoom.xPosition;
+        int y = randomRoom.yPosition;
+
+        Destroy(Floor.instance.GetRoomAt(x, y).gameObject);
+
+        yield return null;
+
+        Floor.instance.AddRoom(puzzleRoomPrefab, x, y);
 
     }
 
